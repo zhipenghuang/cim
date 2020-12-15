@@ -15,6 +15,7 @@ public class ProtocolUtil {
         CIMRequestProto.CIMReqProtocol protocol = CIMRequestProto.CIMReqProtocol.newBuilder()
                 .setRequestId(123L)
                 .setReqMsg("你好啊")
+                .setType(3)
                 .build();
 
         byte[] encode = encode(protocol);
