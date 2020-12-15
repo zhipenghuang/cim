@@ -14,18 +14,18 @@ import io.netty.handler.timeout.IdleStateHandler;
  * Function:
  *
  * @author crossoverJie
- *         Date: 17/05/2018 18:51
+ * Date: 17/05/2018 18:51
  * @since JDK 1.8
  */
 public class CIMServerInitializer extends ChannelInitializer<Channel> {
 
-    private final CIMServerHandle cimServerHandle = new CIMServerHandle() ;
+    private final CIMServerHandle cimServerHandle = new CIMServerHandle();
 
     @Override
     protected void initChannel(Channel ch) throws Exception {
 
         ch.pipeline()
-                //11 秒没有向客户端发送消息就发生心跳
+                //11 秒没有收到客户端消息就触发userEventTrigger
                 .addLast(new IdleStateHandler(11, 0, 0))
                 // google Protobuf 编解码
                 .addLast(new ProtobufVarint32FrameDecoder())
